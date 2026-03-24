@@ -132,10 +132,38 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: 15px;
   }
   html {
     @apply font-sans scroll-smooth;
     scroll-padding-top: 5rem;
+  }
+
+  /* Section prose: consistent spacing for content paragraphs and lists */
+  section > p,
+  section > ul,
+  section > ol {
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    color: var(--color-muted-foreground);
+  }
+
+  /* Subsection headings (h3) in docs */
+  section h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-foreground);
+    scroll-margin-top: 5rem;
+  }
+
+  /* Better list spacing */
+  section ul li,
+  section ol li {
+    font-size: 15px;
+    line-height: 1.75;
   }
 }
 

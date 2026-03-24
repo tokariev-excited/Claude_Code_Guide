@@ -2,6 +2,7 @@ import { SectionHeader } from "@/components/docs/section-header"
 import { CodeBlock } from "@/components/docs/code-block"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
+import { ProductBadge } from "@/components/docs/product-icon"
 
 export default async function InstallPrerequisites() {
   return (
@@ -14,7 +15,9 @@ export default async function InstallPrerequisites() {
       />
 
       {/* 4.1 Install Node.js */}
-      <h3 id="install-nodejs" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">4.1. Install Node.js (runtime for tools and dev server)</h3>
+      <h3 id="install-nodejs" className="scroll-mt-20">
+        4.1. Install <ProductBadge name="nodejs" /> (runtime for tools and dev server)
+      </h3>
 
       <StepList steps={[
         {
@@ -59,7 +62,9 @@ export default async function InstallPrerequisites() {
       ]} />
 
       {/* 4.2 Install Git */}
-      <h3 id="install-git" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">4.2. Install Git (version control)</h3>
+      <h3 id="install-git" className="scroll-mt-20">
+        4.2. Install <ProductBadge name="git" /> (version control)
+      </h3>
 
       <StepList steps={[
         {
@@ -84,12 +89,14 @@ export default async function InstallPrerequisites() {
         },
       ]} />
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        Git will later allow you to track changes and push your project to GitHub.
+      <p className="text-muted-foreground leading-7 mb-4">
+        <ProductBadge name="git" /> will later allow you to track changes and push your project to <ProductBadge name="github" />.
       </p>
 
       {/* 4.3 Install Cursor */}
-      <h3 id="install-cursor" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">4.3. Install and Open Cursor</h3>
+      <h3 id="install-cursor" className="scroll-mt-20">
+        4.3. Install and Open <ProductBadge name="cursor" />
+      </h3>
 
       <StepList steps={[
         {
@@ -116,9 +123,11 @@ export default async function InstallPrerequisites() {
       ]} />
 
       {/* 4.4 Install Claude Code CLI */}
-      <h3 id="install-claude-code" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">4.4. Install Claude Code CLI and Verify It Works</h3>
+      <h3 id="install-claude-code" className="scroll-mt-20">
+        4.4. Install <ProductBadge name="claude" /> and Verify It Works
+      </h3>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         Claude Code&apos;s CLI is what you run in the terminal with the <code className="text-xs bg-muted px-1 py-0.5 rounded">claude</code> command. Installation steps may change over time, so always follow the latest instructions in the official quickstart.
       </p>
 
@@ -149,14 +158,16 @@ export default async function InstallPrerequisites() {
       ]} />
 
       <Callout variant="tip">
-        Once this works, you can also run <code className="text-xs bg-muted px-1 py-0.5 rounded">claude</code> inside Cursor&apos;s integrated terminal.
+        Once this works, you can also run <code className="text-xs bg-muted px-1 py-0.5 rounded">claude</code> inside <ProductBadge name="cursor" />&apos;s integrated terminal.
       </Callout>
 
       {/* 4.5 Connect Figma MCP */}
-      <h3 id="connect-figma-mcp" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">4.5. Connect Figma MCP to Claude Code</h3>
+      <h3 id="connect-figma-mcp" className="scroll-mt-20">
+        4.5. Connect <ProductBadge name="figma" /> MCP to Claude Code
+      </h3>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        The goal here is to let Claude read your Figma frames via URLs.
+      <p className="text-muted-foreground leading-7 mb-4">
+        The goal here is to let <ProductBadge name="claude" /> read your <ProductBadge name="figma" /> frames via URLs.
       </p>
 
       <StepList steps={[
@@ -191,13 +202,15 @@ export default async function InstallPrerequisites() {
       ]} />
 
       <Callout variant="note">
-        Claude can now open and read your Figma file contents by link, instead of just seeing image exports.
+        <ProductBadge name="claude" /> can now open and read your <ProductBadge name="figma" /> file contents by link, instead of just seeing image exports.
       </Callout>
 
       {/* 4.6 Create Accounts */}
-      <h3 id="create-accounts" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">4.6. Create GitHub and Vercel Accounts</h3>
+      <h3 id="create-accounts" className="scroll-mt-20">
+        4.6. Create <ProductBadge name="github" /> and <ProductBadge name="vercel" /> Accounts
+      </h3>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         <strong className="text-foreground">GitHub:</strong>
       </p>
 
@@ -212,7 +225,7 @@ export default async function InstallPrerequisites() {
         { title: "Confirm your email." },
       ]} />
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         <strong className="text-foreground">Vercel:</strong>
       </p>
 

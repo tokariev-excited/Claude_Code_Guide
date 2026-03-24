@@ -1,6 +1,7 @@
 import { SectionHeader } from "@/components/docs/section-header"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
+import { ProductBadge } from "@/components/docs/product-icon"
 
 export default async function Introduction() {
   return (
@@ -12,11 +13,11 @@ export default async function Introduction() {
         description="What this guide covers and the end-to-end workflow."
       />
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        This guide shows a non-coder designer how to turn a Figma admin dashboard into a live, clickable web prototype deployed on Vercel, using <strong className="text-foreground">Claude Code in the terminal inside Cursor</strong> as the main coding agent. The result is a Next.js dashboard app with realistic interactions (navigation, filters, tables, basic forms) that runs entirely on the front end with mock data (no real backend or database).
+      <p className="text-muted-foreground leading-7 mb-4">
+        This guide shows a non-coder designer how to turn a <ProductBadge name="figma" /> admin dashboard into a live, clickable web prototype deployed on <ProductBadge name="vercel" />, using <ProductBadge name="claude" /> in the terminal inside <ProductBadge name="cursor" /> as the main coding agent. The result is a <ProductBadge name="nextjs" /> dashboard app with realistic interactions (navigation, filters, tables, basic forms) that runs entirely on the front end with mock data (no real backend or database).
       </p>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         <strong className="text-foreground">End-to-end flow:</strong>
       </p>
 
@@ -34,14 +35,14 @@ export default async function Introduction() {
         { title: "Optionally use other AI tools to help you craft better prompts before sending them to Claude Code." },
       ]} />
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         Throughout the guide, you will:
       </p>
 
-      <ul className="list-disc list-inside text-sm text-muted-foreground leading-7 mb-4 space-y-1">
+      <ul className="list-disc list-inside text-muted-foreground leading-7 mb-4 space-y-1">
         <li>Let <strong className="text-foreground">Claude create almost all folders and files</strong>, except tools you must install manually.</li>
-        <li>Work in <strong className="text-foreground">Cursor</strong> as your only code editor.</li>
-        <li>Run Claude Code primarily via the <strong className="text-foreground">{`\`claude\``} CLI in Cursor&apos;s terminal</strong>, so it can also run shell commands for you.</li>
+        <li>Work in <ProductBadge name="cursor" /> as your only code editor.</li>
+        <li>Run <ProductBadge name="claude" /> primarily via the <code className="text-xs bg-muted px-1 py-0.5 rounded">{`\`claude\``} CLI in Cursor&apos;s terminal</code>, so it can also run shell commands for you.</li>
         <li>Use <strong className="text-foreground">Plan Mode</strong> for any non-trivial task to get a robust plan before allowing code edits.</li>
       </ul>
 

@@ -12,15 +12,18 @@ export function SectionHeader({
   description,
 }: SectionHeaderProps) {
   return (
-    <div>
+    <div className="mt-14 mb-6 first:mt-0">
+      <p className="text-xs font-mono text-muted-foreground/60 mb-1.5 tracking-widest uppercase">
+        {String(number).padStart(2, "0")}
+      </p>
       <h2
         id={id}
-        className="text-xl font-semibold mt-10 mb-3 border-b border-border pb-2 scroll-mt-20"
+        className="text-[1.6rem] font-bold tracking-tight leading-tight scroll-mt-20"
       >
-        {number}. {title}
+        {title}
       </h2>
       {description && (
-        <p className="text-sm text-muted-foreground leading-7 mb-4">
+        <p className="text-base text-muted-foreground leading-relaxed mt-2">
           {description}
         </p>
       )}

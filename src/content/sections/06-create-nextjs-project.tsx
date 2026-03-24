@@ -3,6 +3,7 @@ import { CodeBlock } from "@/components/docs/code-block"
 import { PromptBlock } from "@/components/docs/prompt-block"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
+import { ProductBadge } from "@/components/docs/product-icon"
 
 export default async function CreateNextjsProject() {
   return (
@@ -15,7 +16,7 @@ export default async function CreateNextjsProject() {
       />
 
       {/* 6.1 Run create-next-app */}
-      <h3 id="run-create-next-app" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">
+      <h3 id="run-create-next-app" className="scroll-mt-20">
         6.1. Let Claude run create-next-app
       </h3>
 
@@ -44,13 +45,13 @@ Please:
         ]}
       />
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         After <strong className="text-foreground">npx create-next-app@latest dashboard-prototype</strong> completes, you will have a new folder <strong className="text-foreground">dashboard-prototype</strong>.
       </p>
 
       {/* 6.2 Open the new project root in Cursor */}
-      <h3 id="open-project-cursor" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">
-        6.2. Open the new project root in Cursor
+      <h3 id="open-project-cursor" className="scroll-mt-20">
+        6.2. Open the new project root in <ProductBadge name="cursor" />
       </h3>
 
       <StepList
@@ -68,7 +69,7 @@ Please:
       />
 
       {/* 6.3 Ask Claude to install dependencies and run the dev server */}
-      <h3 id="install-deps-dev-server" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">
+      <h3 id="install-deps-dev-server" className="scroll-mt-20">
         6.3. Ask Claude to install dependencies and run the dev server
       </h3>
 
@@ -103,7 +104,7 @@ Use npm, and once the plan is ready, execute it.`}</PromptBlock>
       />
 
       <Callout variant="tip" title="Checkpoint">
-        Your base app is now running locally.
+        Your <ProductBadge name="nextjs" /> base app is now running locally.
       </Callout>
     </section>
   )

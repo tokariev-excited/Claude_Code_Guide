@@ -2,7 +2,6 @@
 
 import { useMemo } from "react"
 import { LeftSidebar } from "./left-sidebar"
-import { RightSidebar } from "./right-sidebar"
 import { MobileNav } from "./mobile-nav"
 import { useActiveHeading } from "@/hooks/use-active-heading"
 import { sections } from "@/content/sections-meta"
@@ -27,11 +26,10 @@ export function DocsLayout({ children }: { children: React.ReactNode }) {
       <div className="flex min-h-screen">
         <LeftSidebar activeSection={activeSection} />
         <main className="flex-1 min-w-0">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="max-w-[860px] mx-auto px-6 sm:px-10 lg:px-14 py-12">
             {children}
           </div>
         </main>
-        <RightSidebar />
       </div>
     </>
   )

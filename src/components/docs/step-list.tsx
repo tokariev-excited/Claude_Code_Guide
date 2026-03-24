@@ -9,24 +9,26 @@ interface StepListProps {
 
 export function StepList({ steps }: StepListProps) {
   return (
-    <div className="my-4 space-y-0">
+    <div className="my-6 space-y-0">
       {steps.map((step, index) => (
-        <div key={index} className="relative flex gap-4 pb-6 last:pb-0">
-          {/* Vertical line */}
+        <div key={index} className="relative flex gap-4 pb-7 last:pb-0">
+          {/* Connector line */}
           {index < steps.length - 1 && (
-            <div className="absolute left-[15px] top-8 bottom-0 w-px bg-border" />
+            <div className="absolute left-[10px] top-[24px] bottom-0 w-px bg-border" />
           )}
 
-          {/* Step number circle */}
-          <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-docs-accent text-docs-accent-foreground text-sm font-semibold">
+          {/* Step number — small, bordered pill */}
+          <div className="relative z-10 flex h-[20px] w-[20px] shrink-0 items-center justify-center rounded border border-border bg-muted text-[10px] font-mono font-semibold text-muted-foreground mt-[3px]">
             {index + 1}
           </div>
 
           {/* Content */}
-          <div className="flex-1 pt-0.5">
-            <p className="text-sm font-semibold text-foreground">{step.title}</p>
+          <div className="flex-1 min-w-0">
+            <p className="text-[15px] font-semibold text-foreground leading-[26px]">
+              {step.title}
+            </p>
             {step.children && (
-              <div className="mt-1.5 text-sm text-muted-foreground leading-7">
+              <div className="mt-2.5 text-sm text-muted-foreground leading-relaxed">
                 {step.children}
               </div>
             )}

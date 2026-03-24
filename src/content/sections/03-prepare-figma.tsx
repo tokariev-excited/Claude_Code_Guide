@@ -1,6 +1,7 @@
 import { SectionHeader } from "@/components/docs/section-header"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
+import { ProductBadge } from "@/components/docs/product-icon"
 
 export default async function PrepareFigma() {
   return (
@@ -12,13 +13,13 @@ export default async function PrepareFigma() {
         description="Structure your Figma file for optimal code extraction."
       />
 
-      <h3 id="structure-figma-file" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">3.1. Structure the Figma File</h3>
+      <h3 id="structure-figma-file" className="scroll-mt-20">3.1. Structure the Figma File</h3>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        In your Figma file, create clear, separate frames:
+      <p className="text-muted-foreground leading-7 mb-4">
+        In your <ProductBadge name="figma" /> file, create clear, separate frames:
       </p>
 
-      <ul className="list-disc list-inside text-sm text-muted-foreground leading-7 mb-4 space-y-1">
+      <ul className="list-disc list-inside text-muted-foreground leading-7 mb-4 space-y-1">
         <li>
           <strong className="text-foreground">Design system frame</strong> {"\u2013"} includes:
           <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
@@ -40,10 +41,10 @@ export default async function PrepareFigma() {
       </ul>
 
       <Callout variant="tip" title="Consistency matters">
-        The more consistent your naming and component usage in Figma, the easier it is for Claude to extract and map design tokens and components.
+        The more consistent your naming and component usage in <ProductBadge name="figma" />, the easier it is for Claude to extract and map design tokens and components.
       </Callout>
 
-      <h3 id="set-sharing-links" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">3.2. Set Sharing and Copy Links</h3>
+      <h3 id="set-sharing-links" className="scroll-mt-20">3.2. Set Sharing and Copy Links</h3>
 
       <StepList steps={[
         { title: "Open your Figma file." },
@@ -69,7 +70,7 @@ export default async function PrepareFigma() {
       ]} />
 
       <Callout variant="note">
-        Keep these links somewhere handy.
+        Keep these links somewhere handy — you will paste them into Claude prompts throughout the guide.
       </Callout>
     </section>
   )

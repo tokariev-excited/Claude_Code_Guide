@@ -3,6 +3,7 @@ import { CodeBlock } from "@/components/docs/code-block"
 import { PromptBlock } from "@/components/docs/prompt-block"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
+import { ProductBadge } from "@/components/docs/product-icon"
 
 export default async function StartClaudeCode() {
   return (
@@ -14,12 +15,12 @@ export default async function StartClaudeCode() {
         description="Open your workspace and launch a Claude Code terminal session."
       />
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        From now on, you will mostly talk to Claude by running <code className="text-xs bg-muted px-1 py-0.5 rounded">claude</code> in the terminal <strong className="text-foreground">from the root of your project</strong>. This allows Claude to edit files and run commands in the same working directory.
+      <p className="text-muted-foreground leading-7 mb-4">
+        From now on, you will mostly talk to <ProductBadge name="claude" /> by running <code className="text-xs bg-muted px-1 py-0.5 rounded">claude</code> in the terminal <strong className="text-foreground">from the root of your project</strong>. This allows Claude to edit files and run commands in the same working directory.
       </p>
 
       {/* 5.1 Open Workspace */}
-      <h3 id="open-workspace" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">5.1. Open the Workspace Folder in Cursor</h3>
+      <h3 id="open-workspace" className="scroll-mt-20">5.1. Open the Workspace Folder in Cursor</h3>
 
       <StepList steps={[
         {
@@ -35,10 +36,10 @@ export default async function StartClaudeCode() {
       ]} />
 
       {/* 5.2 Launch Plan Mode */}
-      <h3 id="launch-plan-mode" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">5.2. Launch a Claude Session in the Terminal (Plan Mode)</h3>
+      <h3 id="launch-plan-mode" className="scroll-mt-20">5.2. Launch a Claude Session in the Terminal (Plan Mode)</h3>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        Plan Mode is the safest and most powerful way to start a new task: Claude only analyzes and plans; it cannot edit files until you are satisfied with the plan.
+      <p className="text-muted-foreground leading-7 mb-4">
+        Plan Mode is the safest and most powerful way to start a new task: <ProductBadge name="claude" /> only analyzes and plans; it cannot edit files until you are satisfied with the plan.
       </p>
 
       <StepList steps={[
@@ -68,14 +69,14 @@ export default async function StartClaudeCode() {
         </ul>
       </Callout>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         You can also switch into Plan Mode from an existing session using the <code className="text-xs bg-muted px-1 py-0.5 rounded">/plan</code> slash command (if your version supports it).
       </p>
 
       {/* 5.3 Default Plan Mode */}
-      <h3 id="default-plan-mode" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">5.3. Make Plan Mode the Default (optional, recommended)</h3>
+      <h3 id="default-plan-mode" className="scroll-mt-20">5.3. Make Plan Mode the Default (optional, recommended)</h3>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         To always start new sessions in Plan Mode:
       </p>
 
@@ -92,7 +93,7 @@ export default async function StartClaudeCode() {
       ]} />
 
       <Callout variant="tip">
-        This matches the workflow recommended by the Claude Code team and many advanced users.
+        This matches the workflow recommended by the <ProductBadge name="claude" /> team and many advanced users.
       </Callout>
     </section>
   )

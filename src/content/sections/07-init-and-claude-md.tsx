@@ -3,6 +3,7 @@ import { CodeBlock } from "@/components/docs/code-block"
 import { PromptBlock } from "@/components/docs/prompt-block"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
+import { ProductBadge } from "@/components/docs/product-icon"
 
 export default async function InitAndClaudeMd() {
   return (
@@ -14,12 +15,12 @@ export default async function InitAndClaudeMd() {
         description="Generate persistent project memory for Claude Code."
       />
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        Claude&apos;s <strong className="text-foreground">/init</strong> command reads your codebase and generates a <strong className="text-foreground">CLAUDE.md</strong> file containing instructions and context for future sessions. Think of it as persistent &ldquo;project memory&rdquo; for Claude Code.
+      <p className="text-muted-foreground leading-7 mb-4">
+        <ProductBadge name="claude" />&apos;s <strong className="text-foreground">/init</strong> command reads your codebase and generates a <strong className="text-foreground">CLAUDE.md</strong> file containing instructions and context for future sessions. Think of it as persistent &ldquo;project memory&rdquo; for Claude Code.
       </p>
 
       {/* 7.1 Run /init for the first time */}
-      <h3 id="run-init" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">
+      <h3 id="run-init" className="scroll-mt-20">
         7.1. Run /init for the first time
       </h3>
 
@@ -47,15 +48,15 @@ export default async function InitAndClaudeMd() {
       />
 
       {/* 7.2 What should CLAUDE.md contain for this project */}
-      <h3 id="claude-md-contents" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">
+      <h3 id="claude-md-contents" className="scroll-mt-20">
         7.2. What should CLAUDE.md contain for this project
       </h3>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         By default, <strong className="text-foreground">/init</strong> already does a good job, but you can steer it.
       </p>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         After <strong className="text-foreground">/init</strong> finishes, say:
       </p>
 
@@ -66,20 +67,20 @@ export default async function InitAndClaudeMd() {
 
 Keep the file concise and avoid generic advice.`}</PromptBlock>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         Claude will edit <strong className="text-foreground">CLAUDE.md</strong> accordingly.
       </p>
 
       {/* 7.3 Add workflow rules from the "Workflow Orchestration" sheet */}
-      <h3 id="workflow-orchestration" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">
+      <h3 id="workflow-orchestration" className="scroll-mt-20">
         7.3. Add workflow rules from the &ldquo;Workflow Orchestration&rdquo; sheet
       </h3>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        Now you will add higher-level rules (similar to those in the screenshot you provided) so Claude consistently works the way you want.
+      <p className="text-muted-foreground leading-7 mb-4">
+        Now you will add higher-level rules so <ProductBadge name="claude" /> consistently works the way you want.
       </p>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         Prompt:
       </p>
 
@@ -97,12 +98,12 @@ Include points such as:
 
 Write this section in clear, direct English aimed at other instances of Claude Code working in this repo.`}</PromptBlock>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
+      <p className="text-muted-foreground leading-7 mb-4">
         Claude will rewrite these ideas in its own words inside <strong className="text-foreground">CLAUDE.md</strong>, giving you a persistent workflow contract inspired by the official guidance.
       </p>
 
       <Callout variant="note">
-        The Workflow Orchestration rules act as a contract between you and every future Claude session. They ensure consistency even when you start fresh conversations.
+        The Workflow Orchestration rules act as a contract between you and every future <ProductBadge name="claude" /> session. They ensure consistency even when you start fresh conversations.
       </Callout>
     </section>
   )
