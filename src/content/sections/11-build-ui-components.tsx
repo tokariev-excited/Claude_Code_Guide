@@ -1,5 +1,4 @@
 import { SectionHeader } from "@/components/docs/section-header"
-import { CodeBlock } from "@/components/docs/code-block"
 import { PromptBlock } from "@/components/docs/prompt-block"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
@@ -10,92 +9,77 @@ export default async function BuildUiComponents() {
       <SectionHeader
         id="build-ui-components"
         number={11}
-        title="Build UI Components"
+        title="Build Core UI Components from Figma"
         description="Create reusable React components from your Figma design system."
       />
 
       <p className="text-sm text-muted-foreground leading-7 mb-4">
-        You will now create the building blocks (buttons, inputs, cards, tables) as React components, verify them in Storybook, and later reuse them on pages.
+        The goal now is to implement reusable components that match your Figma design system and can be previewed in Storybook.
       </p>
 
-      <h3 id="general-component-pattern" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">General Pattern</h3>
+      <h3 id="general-component-pattern" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">11.1. General Strategy and Figma Context Limits</h3>
 
       <p className="text-sm text-muted-foreground leading-7 mb-4">
-        For each component type (Button, Input, etc.):
+        Do not expect Claude to perfectly build an entire complex page from a single large Figma frame every time. Figma MCP has practical context limits, and large frames may cause Claude to improvise details once it runs out of context. Instead:
+      </p>
+
+      <ul className="list-disc list-inside text-sm text-muted-foreground leading-7 mb-4 space-y-1">
+        <li><strong className="text-foreground">Build small parts first</strong> — buttons, inputs, cards, table rows, sidebar.</li>
+        <li><strong className="text-foreground">Turn those into reusable components.</strong></li>
+        <li><strong className="text-foreground">Assemble full pages</strong> from those components.</li>
+      </ul>
+
+      <p className="text-sm text-muted-foreground leading-7 mb-4">
+        When you want to work on a particular component:
       </p>
 
       <StepList steps={[
-        { title: "Copy the Figma URL of the relevant section in your design system." },
-        { title: "In the Claude terminal session, describe what you want." },
-        { title: "Let Claude create the file in src/components/ui/... and the matching Storybook story." },
-        { title: "Open Storybook in the browser and visually compare with Figma." },
-        { title: "Refine with additional prompts until it matches." },
+        { title: "In Figma, zoom into the relevant part (e.g., Buttons area)." },
+        { title: "Copy that frame link at that moment." },
+        { title: "Paste it into your prompt to Claude." },
       ]} />
 
-      <h3 id="button-example" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">Button Component Example</h3>
+      <h3 id="button-example" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">11.2. Example: Button Component + Stories</h3>
 
       <StepList steps={[
-        { title: "Copy the Figma URL for your Buttons section in the design system." },
+        { title: "Open your button components in Figma and copy the frame link." },
         {
-          title: "In the Claude session, say:",
+          title: "In Claude's terminal:",
           children: (
-            <PromptBlock>{`We are now building a reusable Button component based on the Figma design system.
+            <PromptBlock>{`We are now building the Button component based on the Figma design system.
 
 Context:
 - /docs/PRD.md
 - /styles/tokens.css
-- Figma Buttons section: [PASTE FIGMA URL HERE]
+- Figma Buttons: [PASTE BUTTONS FRAME LINK HERE]
 
 Task:
-- Create src/components/ui/button.tsx.
-- Implement variants visible in Figma (for example: primary, secondary, subtle).
-- Implement states: default, hover, disabled, focus, including a clear focus ring.
-- Use our Tailwind setup and design tokens from /styles/tokens.css only (no hardcoded hex codes).
-- Make the component accessible (proper button element, aria-hidden="true" for decorative icons, keyboard focus).
 
-Storybook:
-- Create src/components/ui/button.stories.tsx.
-- Add stories that show all variants and states (primary, secondary, disabled, with icon, etc.).
+1) Create src/components/ui/button.tsx that:
+   - Implements the button variants visible in Figma (e.g. primary, secondary, subtle).
+   - Covers default, hover, focus and disabled states.
+   - Uses Tailwind classes that reference our CSS variables from /styles/tokens.css (no hard-coded colors or spacing).
+   - Is accessible (native <button>, keyboard focus, aria-hidden for decorative icons).
 
-Show me the file change plan, then implement.`}</PromptBlock>
+2) Create src/components/ui/button.stories.tsx for Storybook:
+   - Stories that show all variants and states, including with icons.
+
+First show me the plan, then create and populate the files.`}</PromptBlock>
           ),
         },
-        { title: "Approve the plan." },
-        { title: "Open Storybook at http://localhost:6006 and inspect the Button stories." },
-        { title: "If visuals differ from Figma, refine with a follow-up prompt describing the differences." },
+        { title: "Open Storybook, view the Button stories, and adjust as needed with additional prompts." },
       ]} />
 
-      <h3 id="other-base-components" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">Other Base Components</h3>
+      <h3 id="table-component" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">11.3. Example: Table for Users</h3>
 
       <p className="text-sm text-muted-foreground leading-7 mb-4">
-        Repeat the same pattern for each component type (Inputs, Selects, Toggles, Cards, Badges), adjusting the prompt:
+        Repeat a similar flow for the Users table:
       </p>
 
-      <PromptBlock>{`We are building a reusable [COMPONENT NAME] component based on the Figma design system.
-
-Context:
-- /docs/PRD.md
-- /styles/tokens.css
-- Figma [COMPONENT] section: [PASTE FIGMA URL HERE]
-
-Task:
-- Create src/components/ui/[component-name].tsx.
-- Implement the visual variations and states you see in Figma.
-- Use our Tailwind setup and design tokens only.
-- Make the component accessible (labels, aria attributes, keyboard focus).
-
-Storybook:
-- Create src/components/ui/[component-name].stories.tsx.
-- Add stories that cover all variants and important edge cases.
-
-Show me the plan, then implement.`}</PromptBlock>
-
-      <h3 id="table-component" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">Table Component</h3>
-
       <StepList steps={[
-        { title: "Copy the Figma URL for the Users table design." },
+        { title: "In Figma, zoom into the Users table and copy the frame link." },
         {
-          title: "In the Claude session, say:",
+          title: "Prompt Claude to create the table component and stories:",
           children: (
             <PromptBlock>{`We need a reusable table component for the Users list.
 

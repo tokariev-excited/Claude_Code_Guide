@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import { useTheme } from "next-themes"
-import { Sun, Moon, BookOpen } from "lucide-react"
+import { Sun, Moon } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -32,7 +32,8 @@ export function LeftSidebar({ activeSection }: LeftSidebarProps) {
     <aside className="hidden lg:flex flex-col w-[260px] shrink-0 border-r border-border h-screen sticky top-0">
       {/* Header */}
       <div className="flex items-center gap-2 px-4 h-14 border-b border-border shrink-0">
-        <BookOpen className="h-5 w-5 text-docs-accent" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo-icon.png" alt="logo" className="h-5 w-5 shrink-0" />
         <span className="font-semibold text-sm tracking-tight">
           Design to Code Guide
         </span>

@@ -1,7 +1,6 @@
 import { SectionHeader } from "@/components/docs/section-header"
-import { PromptBlock } from "@/components/docs/prompt-block"
-import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
+import { ProductBadge } from "@/components/docs/product-icon"
 
 export default async function BetterPromptsAI() {
   return (
@@ -9,38 +8,26 @@ export default async function BetterPromptsAI() {
       <SectionHeader
         id="better-prompts-ai"
         number={18}
-        title="Better Prompts with AI"
+        title="Using Other AI Tools as Prompt Designers"
         description="Use other AI tools to craft better prompts for Claude Code."
       />
 
       <p className="text-sm text-muted-foreground leading-7 mb-4">
-        Claude Code executes complex coding tasks very well when given precise instructions. If you are more comfortable describing ideas in natural language, you can use another AI tool as a &ldquo;prompt generator&rdquo; and then paste the refined prompt into Claude.
+        You can use any other AI tool to help you craft better prompts for <ProductBadge name="claude" />:
       </p>
+
+      <ul className="list-disc list-inside text-muted-foreground leading-7 mb-4 space-y-1">
+        <li>Describe in your own language what you want.</li>
+        <li>Ask the tool to rewrite this as a <strong className="text-foreground">structured Claude prompt</strong>.</li>
+        <li>Paste that prompt into the <ProductBadge name="claude" /> terminal in <ProductBadge name="cursor" />.</li>
+      </ul>
 
       <p className="text-sm text-muted-foreground leading-7 mb-4">
-        <strong className="text-foreground">Example pattern:</strong>
+        This separation often works well: one AI for wording, <ProductBadge name="claude" /> for coding.
       </p>
 
-      <StepList steps={[
-        {
-          title: "In your preferred AI chat (outside Cursor), describe what you want in your own words, for example:",
-          children: (
-            <PromptBlock>{`I am a product designer working on an admin dashboard prototype.
-I need an English prompt for Claude Code in the terminal that will:
-- Build a Next.js Dashboard page from my Figma design.
-- Use existing UI components (cards, table, filters) instead of raw HTML.
-- Use Tailwind + design tokens from /styles/tokens.css.
-- Keep all data on the client side with mock data (no backend).
-
-Please write a clear, structured prompt I can paste directly into Claude Code.`}</PromptBlock>
-          ),
-        },
-        { title: "Take the generated prompt, review it, and paste it into the Claude terminal session in Cursor." },
-        { title: "Adjust over time as you learn what works best." },
-      ]} />
-
       <Callout variant="tip" title="Two-AI workflow">
-        This way, you combine two strengths: one AI helps you express requirements, another AI (Claude Code) executes them in code.
+        This way, you combine two strengths: one AI helps you express requirements, another AI (<ProductBadge name="claude" />) executes them in code.
       </Callout>
     </section>
   )

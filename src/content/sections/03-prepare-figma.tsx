@@ -1,5 +1,4 @@
 import { SectionHeader } from "@/components/docs/section-header"
-import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
 import { ProductBadge } from "@/components/docs/product-icon"
 
@@ -9,68 +8,63 @@ export default async function PrepareFigma() {
       <SectionHeader
         id="prepare-figma"
         number={3}
-        title="Prepare Your Figma Dashboard"
+        title="Prepare Your Figma Dashboard and Design System"
         description="Structure your Figma file for optimal code extraction."
       />
 
-      <h3 id="structure-figma-file" className="scroll-mt-20">3.1. Structure the Figma File</h3>
+      <h3 id="structure-figma-file" className="scroll-mt-20">3.1. Structure Your Figma File</h3>
 
       <p className="text-muted-foreground leading-7 mb-4">
-        In your <ProductBadge name="figma" /> file, create clear, separate frames:
+        Create a clear structure in <ProductBadge name="figma" />. You can adapt naming to your own conventions; here is a practical layout:
       </p>
 
       <ul className="list-disc list-inside text-muted-foreground leading-7 mb-4 space-y-1">
         <li>
-          <strong className="text-foreground">Design system frame</strong> {"\u2013"} includes:
+          <strong className="text-foreground">Design system frame</strong>
           <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
             <li>Color styles (primary, neutrals, semantic/status colors).</li>
-            <li>Text styles (Heading 1/2/3, Body, Caption).</li>
-            <li>Spacing scale (4, 8, 12, 16, 24, 32, ...).</li>
-            <li>Radius, shadows, borders.</li>
-            <li>Core components: buttons, inputs, selects, checkboxes/switches, badges, cards, table rows, modals.</li>
+            <li>Text styles (Headings, Body, Caption).</li>
+            <li>Spacing scale (4, 8, 12, 16, 24, 32, {"\u2026"}).</li>
+            <li>Radii, border styles, shadows.</li>
+            <li>Core UI components: buttons, inputs, selects, checkboxes, switches, badges, cards, table rows, modals.</li>
           </ul>
         </li>
         <li>
-          <strong className="text-foreground">Page frames</strong> for each screen:
+          <strong className="text-foreground">Page frames</strong> for this example project:
           <ul className="list-disc list-inside ml-5 mt-1 space-y-1">
-            <li><strong className="text-foreground">Dashboard</strong> {"\u2013"} main metrics/cards + table(s).</li>
-            <li><strong className="text-foreground">Users</strong> {"\u2013"} user list/table + possible filters.</li>
-            <li><strong className="text-foreground">Settings</strong> {"\u2013"} toggles, selects, sections.</li>
+            <li><strong className="text-foreground">Dashboard</strong> {"\u2013"} summary cards, charts, key metrics, table.</li>
+            <li><strong className="text-foreground">Users</strong> {"\u2013"} list/table of users, filters, maybe a details panel.</li>
+            <li><strong className="text-foreground">Settings</strong> {"\u2013"} toggles, selects, sections for configuration.</li>
           </ul>
         </li>
       </ul>
 
-      <Callout variant="tip" title="Consistency matters">
-        The more consistent your naming and component usage in <ProductBadge name="figma" />, the easier it is for Claude to extract and map design tokens and components.
-      </Callout>
+      <p className="text-muted-foreground leading-7 mb-4">
+        Use consistent component instances and style names. This makes it easier for Claude to map visual decisions into tokens and components.
+      </p>
 
-      <h3 id="set-sharing-links" className="scroll-mt-20">3.2. Set Sharing and Copy Links</h3>
+      <h3 id="sharing-settings" className="scroll-mt-20">3.2. Sharing Settings</h3>
 
-      <StepList steps={[
-        { title: "Open your Figma file." },
-        {
-          title: "Click Share in the top-right.",
-        },
-        {
-          title: "Set link access.",
-          children: (
-            <p>For ease of use, set <strong className="text-foreground">Anyone with the link can view</strong> (or ensure the Figma account you authorize for MCP has access).</p>
-          ),
-        },
-        {
-          title: "Copy the following URLs (you will paste them into prompts):",
-          children: (
-            <ul className="list-disc list-inside space-y-1">
-              <li>Link to the <strong className="text-foreground">design system frame</strong>.</li>
-              <li>Link to the <strong className="text-foreground">Dashboard</strong> screen.</li>
-              <li>Links to <strong className="text-foreground">Users</strong> and <strong className="text-foreground">Settings</strong> screens.</li>
-            </ul>
-          ),
-        },
-      ]} />
+      <p className="text-muted-foreground leading-7 mb-4">
+        Ensure the <ProductBadge name="figma" /> file is accessible:
+      </p>
 
-      <Callout variant="note">
-        Keep these links somewhere handy — you will paste them into Claude prompts throughout the guide.
+      <ul className="list-disc list-inside text-muted-foreground leading-7 mb-4 space-y-1">
+        <li>Set <strong className="text-foreground">Anyone with the link can view</strong> or make sure the Figma account you will connect via MCP has access.</li>
+      </ul>
+
+      <p className="text-muted-foreground leading-7 mb-4">
+        Later in the guide, when Claude needs a specific frame, you will:
+      </p>
+
+      <ul className="list-disc list-inside text-muted-foreground leading-7 mb-4 space-y-1">
+        <li>Open that frame in <ProductBadge name="figma" />.</li>
+        <li>Copy the <strong className="text-foreground">link</strong> to the current frame at that moment.</li>
+        <li>Paste it into the relevant prompt.</li>
+      </ul>
+
+      <Callout variant="tip" title="No need to collect links in advance">
+        You do <strong className="text-foreground">not</strong> have to collect all links in advance. Just copy the link when Claude asks for a specific frame.
       </Callout>
     </section>
   )

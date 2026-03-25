@@ -1,41 +1,56 @@
 import { SectionHeader } from "@/components/docs/section-header"
 import { PromptBlock } from "@/components/docs/prompt-block"
+import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
 
 export default async function RefactorComponents() {
   return (
     <section>
       <SectionHeader
-        id="refactor-components"
+        id="refine-components"
         number={12}
-        title="Refactor Components"
-        description="Ask Claude to review and refactor components for quality."
+        title="Refining Components with Screenshots"
+        description="Use screenshots to visually compare and refine your components."
       />
 
       <p className="text-sm text-muted-foreground leading-7 mb-4">
-        Example prompt for the Button component:
+        Claude Code supports pasting <strong className="text-foreground">screenshots</strong> directly into the conversation, which is very useful for visual refinement.
       </p>
-
-      <PromptBlock>{`Please review src/components/ui/button.tsx as a senior UI engineer.
-
-Context:
-- /styles/tokens.css
-
-Checks:
-- Uses React.forwardRef correctly (if appropriate) and has a displayName.
-- Uses tokens and Tailwind utilities, no hardcoded colors or spacing.
-- Props are well-typed in TypeScript, no any.
-- Accessible: correct role, keyboard focus, aria-hidden for decorative icons.
-
-1) List concrete issues and suggestions.
-2) Then apply the fixes directly in button.tsx.`}</PromptBlock>
 
       <p className="text-sm text-muted-foreground leading-7 mb-4">
-        Approve or reject the proposed changes based on the diffs Claude shows.
+        The pattern for screenshot-based refinement:
       </p>
 
-      <Callout variant="tip" title="Optional but recommended">
-        This step is optional, but asking Claude to review its own output often catches small issues like missing forwardRef, hardcoded values, or incomplete TypeScript types. Run this for any component you plan to reuse heavily.
+      <StepList steps={[
+        { title: "In your browser, open Storybook or the running app and take a screenshot of the current implementation." },
+        { title: "In Figma, take a screenshot of the target design if needed." },
+        { title: "In Cursor's terminal with Claude, paste one or more screenshots (via your OS clipboard)." },
+        { title: "Immediately after pasting, describe where the screenshot comes from (Storybook, Dashboard page, etc.), what is wrong (spacing, alignment, colors, typography), and what you expect to see instead." },
+      ]} />
+
+      <p className="text-sm text-muted-foreground leading-7 mb-4">
+        Example prompt after pasting screenshots:
+      </p>
+
+      <PromptBlock>{`I have pasted two screenshots:
+
+- The first is the current implementation of the Dashboard cards.
+- The second is the target design from Figma.
+
+Please compare them carefully and update the relevant components so that:
+
+- Card padding and spacing match the Figma design.
+- Typography (font size, weight, line height) matches.
+- The grid layout and gaps between cards are correct.
+
+Only change the components and layout that are clearly different; do not introduce new design ideas.`}</PromptBlock>
+
+      <p className="text-sm text-muted-foreground leading-7 mb-4">
+        Claude will use both screenshots and your text to adjust the code in a targeted way.
+      </p>
+
+      <Callout variant="tip" title="Be specific about differences">
+        The more precise your feedback, the faster Claude can fix visual issues. Instead of saying &quot;it looks wrong,&quot; list concrete issues like &quot;the card padding is too large&quot; or &quot;the heading font size should be smaller.&quot;
       </Callout>
     </section>
   )

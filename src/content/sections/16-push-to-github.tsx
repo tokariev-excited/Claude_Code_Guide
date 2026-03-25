@@ -1,5 +1,4 @@
 import { SectionHeader } from "@/components/docs/section-header"
-import { CodeBlock } from "@/components/docs/code-block"
 import { PromptBlock } from "@/components/docs/prompt-block"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
@@ -11,65 +10,55 @@ export default async function PushToGitHub() {
       <SectionHeader
         id="push-to-github"
         number={16}
-        title="Push to GitHub"
-        description="Initialize Git and push your project to a GitHub repository."
+        title="Git and GitHub"
+        description="Initialize Git, commit, and push your project to GitHub."
       />
 
-      <h3 id="init-git" className="scroll-mt-20">16.1. Initialize Git in the project</h3>
+      <h3 id="init-git" className="scroll-mt-20">16.1. Initialize Git and First Commit</h3>
 
       <p className="text-muted-foreground leading-7 mb-4">
-        Ask <ProductBadge name="claude" /> to handle the <ProductBadge name="git" /> initialization:
+        In a <ProductBadge name="claude" /> session at the project root, ask Claude to handle the <ProductBadge name="git" /> initialization:
       </p>
 
-      <PromptBlock>{`In this project root, please initialize Git and make an initial commit.
+      <PromptBlock>{`Please initialize Git for this project and create the first commit.
 
-Steps to run in the terminal:
-- git init
-- git add .
-- git commit -m "Initial dashboard prototype from Figma with Claude"
+Steps:
 
-If Git user.name and user.email are not configured, please show me the commands you will run to set them, then run them as well.`}</PromptBlock>
+1) Run git init.
+2) Stage all files.
+3) Commit with message "Initial dashboard prototype from Figma with Claude".
+
+If Git user.name and user.email are not configured, show me the commands you will run to set them, then run them.`}</PromptBlock>
 
       <p className="text-muted-foreground leading-7 mb-4">
-        Claude will likely run:
+        <ProductBadge name="claude" /> will execute the needed commands and configure name/email if required.
       </p>
 
-      <CodeBlock code={`git init
-git add .
-git commit -m "Initial dashboard prototype from Figma with Claude"`} language="bash" />
-
-      <p className="text-muted-foreground leading-7 mb-4">
-        If <ProductBadge name="git" /> asks for name and email, Claude can configure them using:
-      </p>
-
-      <CodeBlock code={`git config --global user.name "Your Name"
-git config --global user.email "you@example.com"`} language="bash" />
-
-      <h3 id="create-github-repo" className="scroll-mt-20">16.2. Create an empty repository on GitHub</h3>
+      <h3 id="create-github-repo" className="scroll-mt-20">16.2. Create an Empty GitHub Repository</h3>
 
       <StepList steps={[
-        { title: "Go to https://github.com and click New repository." },
+        { title: "Open GitHub and click New repository." },
         { title: "Name it something like dashboard-prototype." },
-        { title: "Leave all checkboxes (README, .gitignore, license) unchecked so the repository starts empty." },
+        { title: "Leave README / .gitignore unchecked (empty repo)." },
         { title: "Click Create repository." },
       ]} />
 
-      <h3 id="connect-push" className="scroll-mt-20">16.3. Connect the local repo to GitHub and push</h3>
-
       <p className="text-muted-foreground leading-7 mb-4">
-        On the <ProductBadge name="github" /> repo page, you will see a section titled &ldquo;...or push an existing repository from the command line&rdquo;.
+        <ProductBadge name="github" /> will show you a section titled &ldquo;push an existing repository from the command line&rdquo;.
       </p>
 
+      <h3 id="connect-push" className="scroll-mt-20">16.3. Connect Local Repo and Push</h3>
+
       <p className="text-muted-foreground leading-7 mb-4">
-        Copy the commands shown there (they look like):
+        Either copy the commands from <ProductBadge name="github" /> into the <ProductBadge name="cursor" /> terminal yourself or ask <ProductBadge name="claude" /> to run them:
       </p>
 
-      <CodeBlock code={`git remote add origin https://github.com/YOUR_USERNAME/dashboard-prototype.git
-git branch -M main
-git push -u origin main`} language="bash" />
+      <PromptBlock>{`Please connect this local repository to the new GitHub repo I just created and push the current main branch.
+
+Use the commands shown in the "push an existing repository from the command line" section on GitHub.`}</PromptBlock>
 
       <p className="text-muted-foreground leading-7 mb-4">
-        Either paste them into the <ProductBadge name="cursor" /> terminal yourself or ask Claude to run them.
+        After this, your code is on <ProductBadge name="github" />.
       </p>
 
       <Callout variant="tip" title="Code is now on GitHub">

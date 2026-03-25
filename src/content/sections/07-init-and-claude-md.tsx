@@ -1,5 +1,4 @@
 import { SectionHeader } from "@/components/docs/section-header"
-import { CodeBlock } from "@/components/docs/code-block"
 import { PromptBlock } from "@/components/docs/prompt-block"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
@@ -11,95 +10,64 @@ export default async function InitAndClaudeMd() {
       <SectionHeader
         id="init-and-claude-md"
         number={7}
-        title="/init and CLAUDE.md"
+        title="Initialize /init and Configure CLAUDE.md"
         description="Generate persistent project memory for Claude Code."
       />
 
-      <p className="text-muted-foreground leading-7 mb-4">
-        <ProductBadge name="claude" />&apos;s <strong className="text-foreground">/init</strong> command reads your codebase and generates a <strong className="text-foreground">CLAUDE.md</strong> file containing instructions and context for future sessions. Think of it as persistent &ldquo;project memory&rdquo; for Claude Code.
-      </p>
-
-      {/* 7.1 Run /init for the first time */}
+      {/* 7.1 Run /init */}
       <h3 id="run-init" className="scroll-mt-20">
-        7.1. Run /init for the first time
+        7.1. Run /init
       </h3>
+
+      <p className="text-muted-foreground leading-7 mb-4">
+        In a <ProductBadge name="claude" /> session at the project root, make sure Claude can see the project files (you are in the project folder). Type the following and press Enter:
+      </p>
 
       <StepList
         steps={[
           {
-            title: "In the Cursor terminal at the project root, start Claude (Plan Mode is fine).",
-            children: (
-              <CodeBlock code={`claude --permission-mode plan`} language="bash" />
-            ),
+            title: "Type /init and press Enter.",
           },
           {
-            title: "When Claude is ready for instructions, type /init and press Enter.",
-            children: (
-              <CodeBlock code={`/init`} language="bash" />
-            ),
-          },
-          {
-            title: "Claude will analyze the codebase and propose creating or updating a CLAUDE.md file in the repo root.",
-          },
-          {
-            title: "Review the summary of what it plans to include (build commands, architecture notes, etc.) and approve.",
+            title: "Claude will scan the project and propose creating or updating a CLAUDE.md file for this repository.",
           },
         ]}
       />
 
-      {/* 7.2 What should CLAUDE.md contain for this project */}
+      <p className="text-muted-foreground leading-7 mb-4">
+        Think of <strong className="text-foreground">CLAUDE.md</strong> as the &ldquo;project memory&rdquo; for <ProductBadge name="claude" /> Code &mdash; how the project is structured, which commands to use, and what workflow rules to follow.
+      </p>
+
+      {/* 7.2 Tell Claude What to Put into CLAUDE.md */}
       <h3 id="claude-md-contents" className="scroll-mt-20">
-        7.2. What should CLAUDE.md contain for this project
+        7.2. Tell Claude What to Put into CLAUDE.md
       </h3>
 
       <p className="text-muted-foreground leading-7 mb-4">
-        By default, <strong className="text-foreground">/init</strong> already does a good job, but you can steer it.
+        After <strong className="text-foreground">/init</strong> completes, continue in the same session:
       </p>
 
-      <p className="text-muted-foreground leading-7 mb-4">
-        After <strong className="text-foreground">/init</strong> finishes, say:
-      </p>
+      <PromptBlock>{`Please open CLAUDE.md and update it for this project.
 
-      <PromptBlock>{`Please open CLAUDE.md and update it with additional information specific to this project:
-- Our stack: Next.js + React + TypeScript + Tailwind + design tokens in /styles/tokens.css + Storybook + Figma MCP.
-- Common commands: npm run dev, npm run storybook, npm run build, npm test (if any).
-- A note that this project is a front-end-only prototype using mock data (no real backend).
+Include:
 
-Keep the file concise and avoid generic advice.`}</PromptBlock>
+- The stack: Next.js with the App Router, React, TypeScript, Tailwind, Storybook, mock data only (no real backend), and Figma MCP.
+- Common commands: how to start the dev server, how to run Storybook, and how to build the project.
+- A short note that this project is a front-end-only dashboard prototype using mocked data.
+- A "Workflow Orchestration" section with rules like:
 
-      <p className="text-muted-foreground leading-7 mb-4">
-        Claude will edit <strong className="text-foreground">CLAUDE.md</strong> accordingly.
-      </p>
+  - Use Plan Mode for any non-trivial task before implementation.
+  - Switch between modes using Shift+Tab, not by running extra commands.
+  - Prefer building complex pages in smaller parts: shared layout and sidebar first, then reusable components, then full page assembly.
+  - Use separate terminals when helpful: one Claude session for components, another for pages, and another for servers.
+  - Let Claude keep the local dev server or Storybook running in one terminal, while you continue working with Claude in another terminal.
+  - When visual refinement is needed, paste screenshots and explain the issues in text so Claude can match the design more closely.
+  - Avoid inventing design details when Figma context is incomplete; if needed, ask me for a smaller frame or an additional screenshot instead of guessing.
 
-      {/* 7.3 Add workflow rules from the "Workflow Orchestration" sheet */}
-      <h3 id="workflow-orchestration" className="scroll-mt-20">
-        7.3. Add workflow rules from the &ldquo;Workflow Orchestration&rdquo; sheet
-      </h3>
-
-      <p className="text-muted-foreground leading-7 mb-4">
-        Now you will add higher-level rules so <ProductBadge name="claude" /> consistently works the way you want.
-      </p>
+Keep the file clear and concise.`}</PromptBlock>
 
       <p className="text-muted-foreground leading-7 mb-4">
-        Prompt:
-      </p>
-
-      <PromptBlock>{`Please open CLAUDE.md and append a new section called "Workflow Orchestration" with concise rules for how Claude should work in this repository.
-
-Include points such as:
-- Plan Mode as default for any non-trivial task (3+ steps or architectural decisions). If things go wrong, stop and re-plan instead of guessing.
-- Use sub-agents or subtasks to keep the main conversation focused and to handle research or parallel work when needed.
-- After any correction from the user, update a lessons file (such as tasks/lessons.md) with what to avoid next time and review it at the start of relevant sessions.
-- Never treat a task as complete without verifying it: run tests or commands, compare behavior before and after, and check logs when appropriate.
-- Prefer simple, elegant solutions over clever but fragile ones. If you see a clearly better implementation and it is safe, propose it.
-- When a bug report is given, focus on fixing it end-to-end without asking for step-by-step hand-holding. Inspect logs, failing tests and related code.
-- For task management, follow a small loop: plan first, verify the plan, track progress step by step, explain changes at a high level, document results and capture lessons.
-- Core principles: keep changes as simple as possible, avoid shallow or temporary fixes, and only touch the parts of the codebase that are truly necessary.
-
-Write this section in clear, direct English aimed at other instances of Claude Code working in this repo.`}</PromptBlock>
-
-      <p className="text-muted-foreground leading-7 mb-4">
-        Claude will rewrite these ideas in its own words inside <strong className="text-foreground">CLAUDE.md</strong>, giving you a persistent workflow contract inspired by the official guidance.
+        Claude will edit <strong className="text-foreground">CLAUDE.md</strong> with these details, giving you a persistent workflow contract for every future session.
       </p>
 
       <Callout variant="note">

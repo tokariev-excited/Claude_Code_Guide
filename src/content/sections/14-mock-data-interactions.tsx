@@ -8,70 +8,59 @@ export default async function MockDataInteractions() {
       <SectionHeader
         id="mock-data-interactions"
         number={14}
-        title="Mock Data & Interactions"
-        description="Add realistic mock data and client-side behavior."
+        title="Add Mock Data and Client-Side Behavior"
+        description="Add realistic mock data and client-side interactions."
       />
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        You want the prototype to &quot;feel live&quot; without a real backend or database: clicking filters, submitting forms, seeing table updates.
-      </p>
+      <h3 id="create-mock-data" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">14.1. Create Mock Data Files</h3>
 
-      <h3 id="create-mock-data" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">Create Mock Data Files</h3>
-
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        From the project root Claude session, say:
-      </p>
-
-      <PromptBlock>{`We want to add realistic mock data for the Users list, without any real backend.
+      <PromptBlock>{`We want realistic mock data for the Users page, without any backend.
 
 Task:
-- Create a src/data folder if it does not exist.
-- Inside it, create src/data/mockUsers.ts.
-- In that file, export an array of 20-30 user objects with realistic fields: id, name, email, role, status, createdAt.
-- Use roles like "Admin", "Manager", "Viewer" and statuses like "Active", "Invited", "Suspended".
 
-Please show the new file contents once created.`}</PromptBlock>
+1) Create a src/data folder if it does not exist.
+2) Inside it, create src/data/mockUsers.ts.
+3) In that file, export an array of 20–30 user objects with these fields:
+   - id
+   - name
+   - email
+   - role (Admin, Manager, Viewer, etc.)
+   - status (Active, Invited, Suspended, etc.)
+   - createdAt
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        Claude will create the folder and file for you and populate them with sample data.
-      </p>
+Please show me the contents of mockUsers.ts after you create it.`}</PromptBlock>
 
-      <h3 id="use-mock-data" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">Use Mock Data on Pages</h3>
+      <h3 id="use-mock-data" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">14.2. Connect Mock Data to the Users Page</h3>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        Prompt:
-      </p>
+      <PromptBlock>{`On the Users page, we want to use the mockUsers array instead of hard-coded rows.
 
-      <PromptBlock>{`On the Users page, instead of any hardcoded rows, we want to use the mockUsers array.
+Please:
 
-Task:
-- Import the mockUsers array from src/data/mockUsers.
-- Pass it as a prop into the UsersTable component.
-- Make sure the table renders the correct columns and values using our design.
+1) Import mockUsers from src/data/mockUsers in the Users page.
+2) Pass mockUsers into the UsersTable component as a prop.
+3) Ensure the table renders correct data for name, email, role, status and createdAt.
 
-Show me the changes in the Users page and UsersTable component.`}</PromptBlock>
+Show me the diff for the Users page and UsersTable.`}</PromptBlock>
 
-      <h3 id="add-filters-search" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">Add Filters and Search</h3>
+      <h3 id="add-filters-search" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">14.3. Implement Filters and Search</h3>
 
-      <p className="text-sm text-muted-foreground leading-7 mb-4">
-        If your Figma design includes filters and/or a search bar:
-      </p>
-
-      <PromptBlock>{`We want basic client-side filters and search on the Users page, using only mockUsers (no backend).
+      <PromptBlock>{`We need simple client-side filtering and search on the Users page.
 
 Task:
-- Convert the Users page into a Client Component if it is not already (add 'use client' at the top).
-- Introduce React state for:
-  - selected role filter,
-  - selected status filter,
-  - search text.
-- Filter the mockUsers array in memory based on these states.
-- Hook the filters and search input in the UI to this state.
 
-Please update the Users page and any related components, keeping the visuals aligned with the Figma design.`}</PromptBlock>
+1) Turn the Users page into a client component if it is not already.
+2) Add React state for:
+   - role filter,
+   - status filter,
+   - search text.
+3) Filter the mockUsers array in memory based on this state.
+4) Wire the UI controls (selects, chips, search input) to the state.
+5) Ensure the filtered array is passed into UsersTable.
+
+Do not introduce any backend calls or APIs. Everything should stay on the client.`}</PromptBlock>
 
       <p className="text-sm text-muted-foreground leading-7 mb-4">
-        You now have an interactive Users page with live-feeling behavior entirely on the front end.
+        Now the Users page feels &quot;live&quot; while still using only mock data.
       </p>
 
       <Callout variant="tip" title="No backend needed">

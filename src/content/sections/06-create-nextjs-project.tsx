@@ -11,47 +11,50 @@ export default async function CreateNextjsProject() {
       <SectionHeader
         id="create-nextjs-project"
         number={6}
-        title="Create the Next.js Project"
+        title="Create the Next.js Project with Claude"
         description="Let Claude scaffold and run your dashboard app."
       />
 
-      {/* 6.1 Run create-next-app */}
-      <h3 id="run-create-next-app" className="scroll-mt-20">
-        6.1. Let Claude run create-next-app
+      {/* 6.1 Ask Claude to Generate a Next.js App */}
+      <h3 id="ask-claude-generate-app" className="scroll-mt-20">
+        6.1. Ask Claude to Generate a Next.js App
       </h3>
 
       <StepList
         steps={[
           {
-            title: "In Cursor, with your workspace folder opened, start Claude in Plan Mode from the terminal.",
+            title: "In a terminal at your workspace root, start Claude.",
             children: (
-              <CodeBlock code={`claude --permission-mode plan`} language="bash" />
+              <CodeBlock code={`claude`} language="bash" />
             ),
           },
           {
-            title: "When Claude asks what you want to do, answer with something like:",
+            title: "Make sure it is in Plan Mode (press Shift+Tab until Plan Mode is selected).",
+          },
+          {
+            title: "Give it the following prompt:",
             children: (
-              <PromptBlock>{`We are starting a new Next.js + TypeScript + Tailwind project for an admin dashboard prototype.
+              <PromptBlock>{`We are starting a new Next.js + TypeScript + Tailwind project for a dashboard prototype.
 
 Please:
-- Plan how to create the project using create-next-app.
-- Then run the necessary commands in this terminal to generate a project called dashboard-prototype.
-- Use TypeScript, ESLint and Tailwind, and the App Router.`}</PromptBlock>
+
+1. Plan how to create the project using create-next-app.
+2. Then run the necessary commands in this terminal to generate a project called "dashboard-prototype".
+3. Enable TypeScript, ESLint and Tailwind, and use the App Router.
+4. After the project is created, change directory into it.
+
+Show me the plan first. After I confirm, execute the plan.`}</PromptBlock>
             ),
           },
           {
-            title: "Claude will use Plan Mode to propose the commands and steps. Review the plan, and once it looks correct, tell Claude to execute it (it will exit Plan Mode or switch to a mode that can run commands, depending on configuration).",
+            title: "Review the plan. If it looks good, tell Claude to proceed. It will run the npx create-next-app command and set everything up for you.",
           },
         ]}
       />
 
-      <p className="text-muted-foreground leading-7 mb-4">
-        After <strong className="text-foreground">npx create-next-app@latest dashboard-prototype</strong> completes, you will have a new folder <strong className="text-foreground">dashboard-prototype</strong>.
-      </p>
-
-      {/* 6.2 Open the new project root in Cursor */}
+      {/* 6.2 Open the Project in Cursor */}
       <h3 id="open-project-cursor" className="scroll-mt-20">
-        6.2. Open the new project root in <ProductBadge name="cursor" />
+        6.2. Open the Project in <ProductBadge name="cursor" />
       </h3>
 
       <StepList
@@ -60,51 +63,53 @@ Please:
             title: "In Cursor, go to File \u2192 Open Folder.",
           },
           {
-            title: "Open the dashboard-prototype folder directly.",
+            title: "Choose the dashboard-prototype folder.",
           },
           {
-            title: "You should see app/, public/, package.json, tailwind.config.js, etc.",
+            title: "You should now see app/, public/, package.json and other standard files.",
           },
         ]}
       />
 
-      {/* 6.3 Ask Claude to install dependencies and run the dev server */}
+      {/* 6.3 Ask Claude to Install Dependencies and Start a Local Server */}
       <h3 id="install-deps-dev-server" className="scroll-mt-20">
-        6.3. Ask Claude to install dependencies and run the dev server
+        6.3. Ask Claude to Install Dependencies and Start a Local Server
       </h3>
 
       <StepList
         steps={[
           {
-            title: "Open a terminal in Cursor at the root of dashboard-prototype.",
+            title: "Open a terminal at the root of dashboard-prototype.",
           },
           {
-            title: "Start a new Claude session in Plan Mode.",
+            title: "Start Claude again and ensure Plan Mode is enabled (Shift+Tab if needed).",
             children: (
-              <CodeBlock code={`claude --permission-mode plan`} language="bash" />
+              <CodeBlock code={`claude`} language="bash" />
             ),
           },
           {
-            title: "Say:",
+            title: "Give it the following prompt:",
             children: (
-              <PromptBlock>{`Please plan and then run the commands needed to:
-- Install dependencies for this Next.js app.
-- Start the development server on port 3000.
+              <PromptBlock>{`Please:
 
-Use npm, and once the plan is ready, execute it.`}</PromptBlock>
+1. Plan how to install all dependencies for this Next.js app.
+2. Then run the commands in this terminal to install them.
+3. After installation, start the local development server and keep it running.
+
+Show me the plan first, then execute it.`}</PromptBlock>
             ),
           },
           {
-            title: "Claude will likely plan to run npm install and npm run dev. Approve and let it execute.",
+            title: "Claude will typically run npm install and then a dev server command.",
           },
           {
-            title: "Open a browser and go to http://localhost:3000. You should see the default Next.js starter page.",
+            title: "When the server starts, Claude will show a local URL. Open the exact link Claude prints in your browser, instead of relying on a hard-coded URL.",
           },
         ]}
       />
 
-      <Callout variant="tip" title="Checkpoint">
-        Your <ProductBadge name="nextjs" /> base app is now running locally.
+      <Callout variant="tip" title="Keep the server running">
+        Leave that terminal alone with the server running. Open another terminal in <ProductBadge name="cursor" /> and start a separate <ProductBadge name="claude" /> session there for further work.
       </Callout>
     </section>
   )

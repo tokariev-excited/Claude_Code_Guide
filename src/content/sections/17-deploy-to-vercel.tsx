@@ -1,5 +1,4 @@
 import { SectionHeader } from "@/components/docs/section-header"
-import { CodeBlock } from "@/components/docs/code-block"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
 import { ProductBadge } from "@/components/docs/product-icon"
@@ -11,49 +10,37 @@ export default async function DeployToVercel() {
         id="deploy-to-vercel"
         number={17}
         title="Deploy to Vercel"
-        description="Connect GitHub to Vercel and get a shareable URL."
+        description="Import your GitHub project into Vercel and get a live URL."
       />
 
-      <h3 id="connect-github-vercel" className="scroll-mt-20">17.1. Connect GitHub and Vercel</h3>
+      <h3 id="import-project-github" className="scroll-mt-20">17.1. Import the Project from GitHub</h3>
 
       <StepList steps={[
-        { title: "Go to https://vercel.com and ensure you are logged in with your GitHub account." },
-        { title: "If prompted, grant Vercel access to your GitHub repositories (you can limit access to this single repo)." },
-      ]} />
-
-      <h3 id="create-vercel-project" className="scroll-mt-20">17.2. Create a Vercel project from your GitHub repo</h3>
-
-      <StepList steps={[
-        { title: "In the Vercel dashboard, click Add New \u2192 Project." },
-        { title: "In the list of Git repositories, find and select dashboard-prototype." },
-        {
-          title: "Check the settings:",
-          children: (
-            <ul className="list-disc list-inside text-muted-foreground leading-7 mt-1 space-y-1">
-              <li>Framework preset: should automatically show <ProductBadge name="nextjs" />.</li>
-              <li>Root Directory: <code className="text-xs bg-muted px-1 py-0.5 rounded">./</code> (unless your app lives in a subfolder).</li>
-            </ul>
-          ),
-        },
+        { title: "Go to Vercel and click Add New \u2192 Project." },
+        { title: "Choose your dashboard-prototype repo from the list." },
+        { title: "Confirm that the framework preset is Next.js." },
+        { title: "Keep the default root directory." },
         { title: "Click Deploy." },
       ]} />
 
       <p className="text-muted-foreground leading-7 mb-4">
-        <ProductBadge name="vercel" /> will install dependencies, build your <ProductBadge name="nextjs" /> app, and then show a live deployment URL such as <code className="text-xs bg-muted px-1 py-0.5 rounded">https://dashboard-prototype.vercel.app</code>.
+        <ProductBadge name="vercel" /> will install dependencies, build the <ProductBadge name="nextjs" /> project, deploy it and give you a live URL.
       </p>
 
-      <h3 id="auto-updates" className="scroll-mt-20">17.3. Automatic updates on every push</h3>
+      <h3 id="auto-redeploys" className="scroll-mt-20">17.2. Automatic Redeploys</h3>
 
       <p className="text-muted-foreground leading-7 mb-4">
-        Any time you update the app with <ProductBadge name="claude" />, commit and push again:
+        Whenever you update the project:
       </p>
 
-      <CodeBlock code={`git add .
-git commit -m "Describe the change briefly"
-git push`} language="bash" />
+      <ul className="list-disc list-inside text-muted-foreground leading-7 mb-4 space-y-1">
+        <li>Ask <ProductBadge name="claude" /> to implement the required changes.</li>
+        <li>Commit in <ProductBadge name="git" />.</li>
+        <li>Push to <ProductBadge name="github" />.</li>
+      </ul>
 
       <p className="text-muted-foreground leading-7 mb-4">
-        <ProductBadge name="vercel" /> will automatically create a new deployment based on the latest code. The live URL remains stable, but the content updates to the newest version.
+        <ProductBadge name="vercel" /> will automatically create a new deployment for the latest commit. The main production URL stays the same; the content updates.
       </p>
 
       <Callout variant="tip" title="Zero-config CI/CD">
