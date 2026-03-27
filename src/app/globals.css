@@ -91,7 +91,7 @@
 
 .dark {
   --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
+  --foreground: #DEDEDE;
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
@@ -165,6 +165,36 @@
     font-size: 15px;
     line-height: 1.75;
   }
+}
+
+/* Search highlighting — inactive: subtle tint + underline */
+mark.search-highlight {
+  background-color: oklch(0.95 0.06 85 / 50%);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+  border-bottom: 1.5px solid oklch(0.75 0.14 85 / 70%);
+}
+
+.dark mark.search-highlight {
+  background-color: oklch(0.87 0.09 85 / 12%);
+  border-bottom: 1.5px solid oklch(0.75 0.14 85 / 35%);
+  color: inherit;
+}
+
+/* Active match: bright amber, dark text */
+mark.search-highlight.search-active {
+  background-color: oklch(0.88 0.18 80);
+  color: oklch(0.2 0 0);
+  border-radius: 2px;
+  padding: 0 1px;
+  border-bottom: none;
+  outline: none;
+}
+
+.dark mark.search-highlight.search-active {
+  background-color: oklch(0.80 0.18 75);
+  color: oklch(0.1 0 0);
 }
 
 /* Shiki dual-theme support */

@@ -112,7 +112,7 @@ export default async function InstallPrerequisites() {
         {
           title: "Open the Claude Code quickstart page in your browser.",
           children: (
-            <p>Follow the installation instructions for the <strong className="text-foreground">CLI</strong> exactly as written there (copy the command from the docs and paste into your system terminal).</p>
+            <p>Follow the installation instructions for the <strong className="text-foreground">CLI</strong> exactly as written there (copy the command from the docs and paste into your system terminal): <a href="https://code.claude.com/docs/en/quickstart" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">https://code.claude.com/docs/en/quickstart</a></p>
           ),
         },
         {

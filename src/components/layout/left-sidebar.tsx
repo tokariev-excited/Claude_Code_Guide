@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useMemo } from "react"
 import { useTheme } from "next-themes"
-import { Sun, Moon } from "lucide-react"
+import { Sun, Moon, Search, X, ChevronUp, ChevronDown } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -11,22 +11,39 @@ import { cn } from "@/lib/utils"
 
 interface LeftSidebarProps {
   activeSection: string | null
+  searchQuery: string
+  onSearchChange: (value: string) => void
+  matchCount: number
+  activeMatchIndex: number
+  onNext: () => void
+  onPrev: () => void
+  onClear: () => void
 }
 
-export function LeftSidebar({ activeSection }: LeftSidebarProps) {
-  const [search, setSearch] = useState("")
+export function LeftSidebar({
+  activeSection,
+  searchQuery,
+  onSearchChange,
+  matchCount,
+  activeMatchIndex,
+  onNext,
+  onPrev,
+  onClear,
+}: LeftSidebarProps) {
   const { theme, setTheme } = useTheme()
 
   const filtered = useMemo(() => {
-    if (!search.trim()) return sections
-    const q = search.toLowerCase()
+    if (!searchQuery.trim()) return sections
+    const q = searchQuery.toLowerCase()
     return sections.filter(
       (s) =>
         s.title.toLowerCase().includes(q) ||
         s.description.toLowerCase().includes(q) ||
         s.subsections.some((sub) => sub.title.toLowerCase().includes(q))
     )
-  }, [search])
+  }, [searchQuery])
+
+  const hasQuery = searchQuery.trim().length > 0
 
   return (
     <aside className="hidden lg:flex flex-col w-[260px] shrink-0 border-r border-border h-screen sticky top-0">
@@ -41,12 +58,71 @@ export function LeftSidebar({ activeSection }: LeftSidebarProps) {
 
       {/* Search */}
       <div className="px-3 py-3 shrink-0">
-        <Input
-          placeholder="Search sections..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="h-8 text-xs"
-        />
+        {/* Input row — plain block div, no flex, prevents overflow */}
+        <div className="relative">
+          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
+          <Input
+            placeholder="Search content..."
+            value={searchQuery}
+            onChange={(e) => onSearchChange(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && e.shiftKey) {
+                e.preventDefault()
+                onPrev()
+              } else if (e.key === "Enter") {
+                e.preventDefault()
+                onNext()
+              } else if (e.key === "Escape") {
+                onClear()
+              }
+            }}
+            className={cn("h-8 text-xs pl-8", hasQuery ? "pr-8" : "")}
+          />
+          {hasQuery && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute right-0.5 top-1/2 -translate-y-1/2 h-7 w-7 text-muted-foreground hover:text-foreground"
+              onClick={onClear}
+              tabIndex={-1}
+            >
+              <X className="h-3.5 w-3.5" />
+            </Button>
+          )}
+        </div>
+
+        {/* Counter + nav row — only when query is active */}
+        {hasQuery && (
+          <div className="flex items-center justify-between mt-1.5 px-0.5">
+            <span className="text-[10px] text-muted-foreground/70 select-none">
+              {matchCount === 0
+                ? "No results"
+                : `${activeMatchIndex + 1} of ${matchCount}`}
+            </span>
+            {matchCount > 0 && (
+              <div className="flex items-center gap-0.5">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-5 w-5 text-muted-foreground hover:text-foreground"
+                  onClick={onPrev}
+                  tabIndex={-1}
+                >
+                  <ChevronUp className="h-3 w-3" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-5 w-5 text-muted-foreground hover:text-foreground"
+                  onClick={onNext}
+                  tabIndex={-1}
+                >
+                  <ChevronDown className="h-3 w-3" />
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Nav */}
@@ -75,6 +151,11 @@ export function LeftSidebar({ activeSection }: LeftSidebarProps) {
               </div>
             )
           })}
+          {hasQuery && filtered.length === 0 && (
+            <p className="text-xs text-muted-foreground text-center py-4">
+              No matching sections
+            </p>
+          )}
         </nav>
       </ScrollArea>
 
