@@ -197,6 +197,12 @@ mark.search-highlight.search-active {
   color: oklch(0.1 0 0);
 }
 
+@layer utilities {
+  button, [role="button"], a {
+    cursor: pointer;
+  }
+}
+
 /* Shiki dual-theme support */
 html.dark .shiki,
 html.dark .shiki span {
