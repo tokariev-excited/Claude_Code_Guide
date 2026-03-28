@@ -46,7 +46,7 @@ export function CodeBlockWrapper({
         <Button
           variant="ghost"
           size="sm"
-          className="h-6 px-2 text-xs text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 cursor-pointer"
+          className="h-6 px-2 text-xs text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800"
           onClick={handleCopy}
         >
           {copied ? (

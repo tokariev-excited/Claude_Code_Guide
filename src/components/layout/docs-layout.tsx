@@ -103,6 +103,52 @@ export function DocsLayout({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
+  // Safari's native smooth scroll (both CSS scroll-behavior and window.scrollTo behavior:'smooth')
+  // is choppy or instant. Use a custom rAF animation for consistent cross-browser smoothness.
+  useEffect(() => {
+    let rafId: number | null = null
+
+    const smoothScrollTo = (targetY: number, duration = 550) => {
+      if (rafId !== null) cancelAnimationFrame(rafId)
+      const startY = window.scrollY
+      const distance = targetY - startY
+      let startTime: number | null = null
+
+      const easeInOutCubic = (t: number) =>
+        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+
+      const step = (now: number) => {
+        if (startTime === null) startTime = now
+        const elapsed = now - startTime
+        const progress = Math.min(elapsed / duration, 1)
+        window.scrollTo(0, startY + distance * easeInOutCubic(progress))
+        if (progress < 1) rafId = requestAnimationFrame(step)
+        else rafId = null
+      }
+
+      rafId = requestAnimationFrame(step)
+    }
+
+    const handleAnchorClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement).closest('a[href^="#"]')
+      if (!anchor) return
+      const href = anchor.getAttribute('href')!
+      const id = href.slice(1)
+      const el = document.getElementById(id)
+      if (!el) return
+      e.preventDefault()
+      const top = el.getBoundingClientRect().top + window.scrollY - 80 // 5rem = scroll-padding-top
+      smoothScrollTo(Math.max(0, top))
+      history.pushState(null, '', href)
+    }
+
+    document.addEventListener('click', handleAnchorClick)
+    return () => {
+      document.removeEventListener('click', handleAnchorClick)
+      if (rafId !== null) cancelAnimationFrame(rafId)
+    }
+  }, [])
+
   const handleNext = useCallback(() => {
     if (matchCount === 0) return
     const next = (activeMatchIndex + 1) % matchCount
