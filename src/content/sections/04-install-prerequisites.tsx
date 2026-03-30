@@ -137,12 +137,12 @@ export default async function InstallPrerequisites() {
       <StepList steps={[
         {
           title: "Open the official Figma MCP setup page for Claude Code.",
+          children: (
+            <p><a href="https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/#claude-code" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">developers.figma.com/docs/figma-mcp-server/remote-server-installation/#claude-code</a></p>
+          ),
         },
         {
           title: "Follow the instructions there exactly as written.",
-          children: (
-            <p>Do <strong className="text-foreground">not</strong> use example commands from this guide; always copy the command from the official page, because it may change over time.</p>
-          ),
         },
         {
           title: "After setup, start Claude (CLI) once and confirm that Figma MCP is visible / available according to the docs.",

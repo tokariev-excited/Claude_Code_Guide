@@ -39,7 +39,7 @@ export default async function BuildUiComponents() {
         { title: "Paste it into your prompt to Claude." },
       ]} />
 
-      <h3 id="button-example" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">11.2. Example: Button Component + Stories</h3>
+      <h3 id="button-example" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">11.2. Example: Button Component</h3>
 
       <StepList steps={[
         { title: "Open your button components in Figma and copy the frame link." },
@@ -61,13 +61,10 @@ Task:
    - Uses Tailwind classes that reference our CSS variables from /styles/tokens.css (no hard-coded colors or spacing).
    - Is accessible (native <button>, keyboard focus, aria-hidden for decorative icons).
 
-2) Create src/components/ui/button.stories.tsx for Storybook:
-   - Stories that show all variants and states, including with icons.
-
 First show me the plan, then create and populate the files.`}</PromptBlock>
           ),
         },
-        { title: "Open Storybook, view the Button stories, and adjust as needed with additional prompts." },
+        { title: "Open Storybook, view the Button component, and adjust as needed with additional prompts." },
       ]} />
 
       <h3 id="table-component" className="text-base font-semibold mt-6 mb-2 scroll-mt-20">11.3. Example: Table for Users</h3>

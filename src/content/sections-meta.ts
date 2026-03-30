@@ -124,7 +124,7 @@ export const sections: SectionMeta[] = [
     description: "Create reusable React components from your Figma design system.",
     subsections: [
       { id: "general-component-pattern", title: "General Strategy and Figma Context Limits" },
-      { id: "button-example", title: "Button Component + Stories" },
+      { id: "button-example", title: "Button Component" },
       { id: "table-component", title: "Table for Users" },
     ],
   },

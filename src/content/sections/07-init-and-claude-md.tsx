@@ -26,7 +26,7 @@ export default async function InitAndClaudeMd() {
       <StepList
         steps={[
           {
-            title: "Type /init and press Enter.",
+            title: <>Type <code className="rounded bg-muted px-1 py-0.5 font-mono text-[13px]">/init</code> and press Enter.</>,
           },
           {
             title: "Claude will scan the project and propose creating or updating a CLAUDE.md file for this repository.",
