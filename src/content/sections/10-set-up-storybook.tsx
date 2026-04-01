@@ -2,6 +2,7 @@ import { SectionHeader } from "@/components/docs/section-header"
 import { PromptBlock } from "@/components/docs/prompt-block"
 import { Callout } from "@/components/docs/callout"
 import { ProductBadge } from "@/components/docs/product-icon"
+import { ZoomableImage } from "@/components/docs/zoomable-image"
 
 export default async function SetUpStorybook() {
   return (
@@ -54,6 +55,8 @@ Show me the plan first, then execute it.`}</PromptBlock>
       <p className="text-muted-foreground leading-7 mb-4">
         Claude will start <ProductBadge name="storybook" /> and print a local link. Open <strong className="text-foreground">that exact URL</strong> in your browser.
       </p>
+
+      <ZoomableImage src="/storybook-running.png" alt="Storybook running in the browser" className="mb-6 rounded-xl border border-border" />
 
       <Callout variant="tip" title="Keep Storybook running">
         Leave that terminal alone with <ProductBadge name="storybook" /> running. Use another terminal (and another <ProductBadge name="claude" /> session) for implementation work.

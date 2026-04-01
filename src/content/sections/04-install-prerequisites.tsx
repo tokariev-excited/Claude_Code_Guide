@@ -3,6 +3,7 @@ import { CodeBlock } from "@/components/docs/code-block"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
 import { ProductBadge } from "@/components/docs/product-icon"
+import { ZoomableImage } from "@/components/docs/zoomable-image"
 
 export default async function InstallPrerequisites() {
   return (
@@ -23,11 +24,19 @@ export default async function InstallPrerequisites() {
         {
           title: "Go to https://nodejs.org.",
           children: (
-            <p>Visit <a href="https://nodejs.org" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">https://nodejs.org</a>.</p>
+            <div>
+              <p>Visit <a href="https://nodejs.org" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">https://nodejs.org</a>.</p>
+              <ZoomableImage src="/nodejs-homepage.png" alt="Node.js homepage" className="mt-3 rounded-xl border border-border" />
+            </div>
           ),
         },
         {
           title: "Download the LTS (Recommended) version for your OS.",
+          children: (
+            <div>
+              <ZoomableImage src="/nodejs-download.png" alt="Node.js download page" className="mt-3 rounded-xl border border-border" />
+            </div>
+          ),
         },
         {
           title: "Run the installer and keep default options.",
@@ -52,7 +61,10 @@ export default async function InstallPrerequisites() {
         {
           title: "Go to https://git-scm.com.",
           children: (
-            <p>Visit <a href="https://git-scm.com" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">https://git-scm.com</a>.</p>
+            <div>
+              <p>Visit <a href="https://git-scm.com" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">https://git-scm.com</a>.</p>
+              <ZoomableImage src="/git-homepage.png" alt="Git homepage" className="mt-3 rounded-xl border border-border" />
+            </div>
           ),
         },
         {
@@ -81,7 +93,10 @@ export default async function InstallPrerequisites() {
         {
           title: "Go to https://www.cursor.com and download Cursor for your OS.",
           children: (
-            <p>Visit <a href="https://www.cursor.com" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">https://www.cursor.com</a>.</p>
+            <div>
+              <p>Visit <a href="https://www.cursor.com" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">https://www.cursor.com</a>.</p>
+              <ZoomableImage src="/cursor-homepage.png" alt="Cursor homepage" className="mt-3 rounded-xl border border-border" />
+            </div>
           ),
         },
         {
@@ -112,7 +127,10 @@ export default async function InstallPrerequisites() {
         {
           title: "Open the Claude Code quickstart page in your browser.",
           children: (
-            <p>Follow the installation instructions for the <strong className="text-foreground">CLI</strong> exactly as written there (copy the command from the docs and paste into your system terminal): <a href="https://code.claude.com/docs/en/quickstart" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">https://code.claude.com/docs/en/quickstart</a></p>
+            <div>
+              <p>Follow the installation instructions for the <strong className="text-foreground">CLI</strong> exactly as written there (copy the command from the docs and paste into your system terminal): <a href="https://code.claude.com/docs/en/quickstart" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">https://code.claude.com/docs/en/quickstart</a></p>
+              <ZoomableImage src="/claude-code-quickstart.png" alt="Claude Code quickstart page" className="mt-3 rounded-xl border border-border" />
+            </div>
           ),
         },
         {
@@ -138,7 +156,10 @@ export default async function InstallPrerequisites() {
         {
           title: "Open the official Figma MCP setup page for Claude Code.",
           children: (
-            <p><a href="https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/#claude-code" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">developers.figma.com/docs/figma-mcp-server/remote-server-installation/#claude-code</a></p>
+            <div>
+              <p><a href="https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/#claude-code" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">developers.figma.com/docs/figma-mcp-server/remote-server-installation/#claude-code</a></p>
+              <ZoomableImage src="/figma-mcp-setup.png" alt="Figma MCP setup page" className="mt-3 rounded-xl border border-border" />
+            </div>
           ),
         },
         {
@@ -161,10 +182,12 @@ export default async function InstallPrerequisites() {
       <p className="text-muted-foreground leading-7 mb-4">
         <strong className="text-foreground">GitHub:</strong> Go to <a href="https://github.com" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">https://github.com</a>, sign up or log in.
       </p>
+      <ZoomableImage src="/github-homepage.png" alt="GitHub homepage" className="mb-4 rounded-xl border border-border" />
 
       <p className="text-muted-foreground leading-7 mb-4">
         <strong className="text-foreground">Vercel:</strong> Go to <a href="https://vercel.com" className="text-docs-accent hover:underline" target="_blank" rel="noopener noreferrer">https://vercel.com</a>, sign up with <strong className="text-foreground">Continue with GitHub</strong> and allow access to your repositories.
       </p>
+      <ZoomableImage src="/vercel-homepage.png" alt="Vercel homepage" className="mb-4 rounded-xl border border-border" />
     </section>
   )
 }

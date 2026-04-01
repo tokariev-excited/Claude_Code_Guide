@@ -137,7 +137,7 @@ export function LeftSidebar({
                 <a
                   href={`#${section.id}`}
                   className={cn(
-                    "flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors",
+                    "flex items-center gap-2 rounded-md px-2 py-1.5 text-sm",
                     isActive
                       ? "bg-accent text-docs-accent font-medium"
                       : "text-muted-foreground hover:text-foreground hover:bg-accent"

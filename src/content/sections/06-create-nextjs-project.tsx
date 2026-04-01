@@ -4,6 +4,7 @@ import { PromptBlock } from "@/components/docs/prompt-block"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
 import { ProductBadge } from "@/components/docs/product-icon"
+import { ZoomableImage } from "@/components/docs/zoomable-image"
 
 export default async function CreateNextjsProject() {
   return (
@@ -25,7 +26,10 @@ export default async function CreateNextjsProject() {
           {
             title: "In a terminal at your workspace root, start Claude.",
             children: (
-              <CodeBlock code={`claude`} language="bash" />
+              <div>
+                <CodeBlock code={`claude`} language="bash" />
+                <ZoomableImage src="/claude-plan-mode-start.png" alt="Claude Code terminal with plan mode on" className="mt-3 rounded-xl border border-border" />
+              </div>
             ),
           },
           {
@@ -48,45 +52,23 @@ Show me the plan first. After I confirm, execute the plan.`}</PromptBlock>
           },
           {
             title: "Review the plan. If it looks good, tell Claude to proceed. It will run the npx create-next-app command and set everything up for you.",
-          },
-        ]}
-      />
-
-      {/* 6.2 Open the Project in Cursor */}
-      <h3 id="open-project-cursor" className="scroll-mt-20">
-        6.2. Open the Project in <ProductBadge name="cursor" />
-      </h3>
-
-      <StepList
-        steps={[
-          {
-            title: "In Cursor, go to File \u2192 Open Folder.",
-          },
-          {
-            title: "Choose the dashboard-prototype folder.",
-          },
-          {
-            title: "You should now see app/, public/, package.json and other standard files.",
-          },
-        ]}
-      />
-
-      {/* 6.3 Ask Claude to Install Dependencies and Start a Local Server */}
-      <h3 id="install-deps-dev-server" className="scroll-mt-20">
-        6.3. Ask Claude to Install Dependencies and Start a Local Server
-      </h3>
-
-      <StepList
-        steps={[
-          {
-            title: "Open a terminal at the root of dashboard-prototype.",
-          },
-          {
-            title: "Start Claude again and ensure Plan Mode is enabled (Shift+Tab if needed).",
             children: (
-              <CodeBlock code={`claude`} language="bash" />
+              <div className="grid grid-cols-2 gap-3 mt-3">
+                <ZoomableImage src="/claude-plan-scaffold-1.png" alt="Claude plan for Next.js scaffold - part 1" className="rounded-lg border border-border" />
+                <ZoomableImage src="/claude-plan-scaffold-2.png" alt="Claude plan for Next.js scaffold - part 2" className="rounded-lg border border-border" />
+              </div>
             ),
           },
+        ]}
+      />
+
+      {/* 6.2 Ask Claude to Install Dependencies and Start a Local Server */}
+      <h3 id="install-deps-dev-server" className="scroll-mt-20">
+        6.2. Ask Claude to Install Dependencies and Start a Local Server
+      </h3>
+
+      <StepList
+        steps={[
           {
             title: "Give it the following prompt:",
             children: (

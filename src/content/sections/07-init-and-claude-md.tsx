@@ -3,6 +3,7 @@ import { PromptBlock } from "@/components/docs/prompt-block"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
 import { ProductBadge } from "@/components/docs/product-icon"
+import { ZoomableImage } from "@/components/docs/zoomable-image"
 
 export default async function InitAndClaudeMd() {
   return (
@@ -30,6 +31,9 @@ export default async function InitAndClaudeMd() {
           },
           {
             title: "Claude will scan the project and propose creating or updating a CLAUDE.md file for this repository.",
+            children: (
+              <ZoomableImage src="/claude-md-generated.png" alt="CLAUDE.md file generated in Cursor" className="mt-3 rounded-xl border border-border" />
+            ),
           },
         ]}
       />

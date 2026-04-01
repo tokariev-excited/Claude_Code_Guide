@@ -2,6 +2,7 @@ import { SectionHeader } from "@/components/docs/section-header"
 import { PromptBlock } from "@/components/docs/prompt-block"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
+import { ZoomableImage } from "@/components/docs/zoomable-image"
 
 export default async function ExtractDesignTokens() {
   return (
@@ -33,6 +34,9 @@ export default async function ExtractDesignTokens() {
           },
           {
             title: "Copy the frame link.",
+            children: (
+              <ZoomableImage src="/figma-copy-link-selection.png" alt="Figma copy link to selection context menu" className="mt-3 rounded-xl border border-border" />
+            ),
           },
           {
             title: "Go back to Claude\u2019s terminal session.",

@@ -2,6 +2,7 @@ import { SectionHeader } from "@/components/docs/section-header"
 import { CodeBlock } from "@/components/docs/code-block"
 import { Callout } from "@/components/docs/callout"
 import { ProductBadge } from "@/components/docs/product-icon"
+import { ZoomableImage } from "@/components/docs/zoomable-image"
 
 export default async function StartClaudeCode() {
   return (
@@ -17,8 +18,9 @@ export default async function StartClaudeCode() {
       <h3 id="open-workspace" className="scroll-mt-20">5.1. Open Your Workspace in Cursor</h3>
 
       <p className="text-muted-foreground leading-7 mb-4">
-        Choose a folder on your machine for projects (for example, <code className="text-xs bg-muted px-1 py-0.5 rounded">projects</code>). In <ProductBadge name="cursor" />, open this folder via <strong className="text-foreground">File {"\u2192"} Open Folder</strong>.
+        Choose a folder on your machine for projects (for example, <code className="text-xs bg-muted px-1 py-0.5 rounded">projects</code>). In <ProductBadge name="cursor" />, open this folder via <strong className="text-foreground">File {"\u2192"} Open Project</strong>.
       </p>
+      <ZoomableImage src="/cursor-open-folder.png" alt="Cursor open folder screen" className="mb-4 rounded-xl border border-border" />
 
       {/* 5.2 Start Claude in the Terminal */}
       <h3 id="start-claude-terminal" className="scroll-mt-20">5.2. Start Claude in the Terminal</h3>
@@ -28,6 +30,7 @@ export default async function StartClaudeCode() {
       </p>
 
       <CodeBlock code={`claude`} language="bash" />
+      <ZoomableImage src="/cursor-claude-terminal.png" alt="Cursor terminal with claude command" className="mb-4 rounded-xl border border-border" />
 
       <p className="text-muted-foreground leading-7 mb-4">
         From now on, the terminal behaves as a conversation with Claude Code <strong className="text-foreground">inside</strong> your project. You will give it instructions in natural language; Claude will reply and can also run shell commands or edit files in the project when you approve.
@@ -48,6 +51,11 @@ export default async function StartClaudeCode() {
         <li>Press <strong className="text-foreground">Shift+Tab</strong> to cycle between modes until you see <strong className="text-foreground">Plan Mode</strong> selected.</li>
         <li>When you are ready to move from planning to implementation, press <strong className="text-foreground">Shift+Tab</strong> again to return to a normal working mode.</li>
       </ul>
+
+      <div className="grid grid-cols-2 gap-3 mb-6">
+        <ZoomableImage src="/plan-mode-on.png" alt="Plan mode on in Claude Code terminal" className="rounded-lg border border-border" />
+        <ZoomableImage src="/accept-edits-mode.png" alt="Accept edits mode in Claude Code terminal" className="rounded-lg border border-border" />
+      </div>
 
       <Callout variant="important" title="When to use Plan Mode">
         Use Plan Mode for tasks that touch multiple files, change architecture, or feel risky.

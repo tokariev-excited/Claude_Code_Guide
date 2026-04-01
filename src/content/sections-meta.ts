@@ -72,7 +72,6 @@ export const sections: SectionMeta[] = [
     description: "Let Claude scaffold and run your dashboard app.",
     subsections: [
       { id: "ask-claude-generate-app", title: "Ask Claude to Generate a Next.js App" },
-      { id: "open-project-cursor", title: "Open the Project in Cursor" },
       { id: "install-deps-dev-server", title: "Install Deps and Start Dev Server" },
     ],
   },

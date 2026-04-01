@@ -135,7 +135,7 @@
     font-size: 15px;
   }
   html {
-    @apply font-sans scroll-smooth;
+    @apply font-sans;
     scroll-padding-top: 5rem;
   }
 
