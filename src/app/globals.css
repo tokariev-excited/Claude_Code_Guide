@@ -203,6 +203,10 @@ mark.search-highlight.search-active {
   }
 }
 
+main a {
+  text-decoration-line: underline;
+}
+
 /* Shiki dual-theme support */
 html.dark .shiki,
 html.dark .shiki span {
