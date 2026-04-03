@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { SectionHeader } from "@/components/docs/section-header"
 import { PromptBlock } from "@/components/docs/prompt-block"
 import { StepList } from "@/components/docs/step-list"
@@ -37,7 +38,7 @@ If Git user.name and user.email are not configured, show me the commands you wil
       <h3 id="create-github-repo" className="scroll-mt-20">16.2. Create an Empty GitHub Repository</h3>
 
       <StepList steps={[
-        { title: "Open GitHub and click New repository." },
+        { title: "Open GitHub and click New repository.", children: <Image src="/github-new-repository.png" alt="GitHub dashboard showing the New repository button highlighted" width={1456} height={816} className="mt-3 rounded-lg border border-border w-full" /> },
         { title: "Name it something like dashboard-prototype." },
         { title: "Leave README / .gitignore unchecked (empty repo)." },
         { title: "Click Create repository." },

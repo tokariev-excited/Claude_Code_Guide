@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { SectionHeader } from "@/components/docs/section-header"
 import { StepList } from "@/components/docs/step-list"
 import { Callout } from "@/components/docs/callout"
@@ -16,7 +17,7 @@ export default async function DeployToVercel() {
       <h3 id="import-project-github" className="scroll-mt-20">17.1. Import the Project from GitHub</h3>
 
       <StepList steps={[
-        { title: "Go to Vercel and click Add New \u2192 Project." },
+        { title: "Go to Vercel and click Add New \u2192 Project.", children: <Image src="/vercel-add-new-project.png" alt="Vercel dashboard showing the Add New dropdown with Project option highlighted" width={1456} height={816} className="mt-3 rounded-lg border border-border w-full" /> },
         { title: "Choose your dashboard-prototype repo from the list." },
         { title: "Confirm that the framework preset is Next.js." },
         { title: "Keep the default root directory." },
